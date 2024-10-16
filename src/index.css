@@ -6,3 +6,6 @@
     width: 5rem;
 }
 
+.quilt-block {
+    cursor: pointer;
+}

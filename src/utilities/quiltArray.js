@@ -18,8 +18,9 @@ const quiltArray = (cols, rows, fabrics) => {
     }
     const hex = colors[counter].color;
     const num = colors[counter].num;
+    const opacity = 1;
     counter += 1;
-    return { hex, num };
+    return { hex, num, opacity };
   };
   // create Array of arrays (array of rows)
   const quiltArr = Array.from({ length: rows }, () => {

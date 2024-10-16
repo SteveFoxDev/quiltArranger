@@ -1,15 +1,19 @@
 import { useSelector } from 'react-redux';
 import QuiltDisplay from '../components/QuiltDisplay';
 import QuiltCreateForm from '../components/QuiltCreateForm';
-import QuiltEditForm from '../components/QuiltEditForm';
+import QuiltEditor from '../components/QuiltEditor';
+import Modal from '../components/Modal';
+import QuiltModalBody from '../components/QuiltModalBody';
 
 const QuiltPage = () => {
   const quilt = useSelector((state) => state.quilt.quilt);
+  const showModal = useSelector((state) => state.quilt.showModal);
 
   return (
     <div className='container'>
       <QuiltCreateForm />
-      <QuiltEditForm />
+      <QuiltEditor />
+      {showModal && <Modal ><QuiltModalBody /></Modal>}
       <QuiltDisplay quilt={quilt || []} />
     </div>
   );

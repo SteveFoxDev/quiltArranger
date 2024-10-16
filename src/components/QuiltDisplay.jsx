@@ -1,7 +1,22 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal } from '../store/slices/quiltSlice';
+import { setJustClicked, deSelectBlock } from '../store/slices/quiltSlice';
 
 const QuiltDisplay = ({ quilt, className }) => {
-  const bgColor = useSelector((state) => state.quilt.bgColor);
+  const { bgColor } = useSelector((state) => state.quilt);
+  const dispatch = useDispatch();
+
+  const handleClick = (row, block, color, num) => {
+    const clicked = { row, block, color, num };
+
+    if (quilt[row][block].opacity === 0.33) {
+      return dispatch(deSelectBlock(clicked));
+    } else {
+      dispatch(setJustClicked(clicked));
+      return dispatch(openModal());
+    }
+  };
+
   const renderedQuilt = quilt.map((row, index) => {
     return (
       <div key={index} className='row flex flex-nowrap'>
@@ -9,11 +24,12 @@ const QuiltDisplay = ({ quilt, className }) => {
           return (
             <div
               key={`${index}${i}`}
-              className='col border ratio ratio-1x1 d-inline-flex align-items-center justify-content-center p-0'
+              className='col border ratio ratio-1x1 d-inline-flex align-items-center justify-content-center p-0 quilt-block'
               style={{
-                backgroundColor: {bgColor} && `${tile.hex}`,
+                backgroundColor: { bgColor } && `${tile.hex}`,
+                opacity: `${tile.opacity}`,
               }}
-              onClick={() => console.log(quilt[index][i])}
+              onClick={() => handleClick(index, i, tile.hex, tile.num)}
             >
               {tile.num}
             </div>
@@ -23,7 +39,9 @@ const QuiltDisplay = ({ quilt, className }) => {
     );
   });
 
-  return <div className={`container mb-5 ${className || ''}`}>{renderedQuilt}</div>;
+  return (
+    <div className={`container mb-5 ${className || ''}`}>{renderedQuilt}</div>
+  );
 };
 
 export default QuiltDisplay;

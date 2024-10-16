@@ -38,7 +38,7 @@ const QuiltCreateForm = ({ className }) => {
         <div className='col-md-4'>
           <NumberInput
             name='fabrics'
-            errors={errors.patterns}
+            errors={errors.fabrics}
             register={register}
           />
         </div>
