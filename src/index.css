@@ -1,0 +1,8 @@
+.rotate {
+    transform: rotate(90deg);
+}
+
+.color-picker {
+    width: 5rem;
+}
+
