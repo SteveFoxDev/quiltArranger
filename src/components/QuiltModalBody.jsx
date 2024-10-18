@@ -10,6 +10,7 @@ import {
 
 const QuiltModalBody = () => {
   const { toBeSwapped, justClicked } = useSelector((state) => state.quilt);
+  const color = useSelector((state) => state.quilt.quilt[justClicked.row][justClicked.block]);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -55,12 +56,13 @@ const QuiltModalBody = () => {
       </button>
       <DividerWithText text='OR' />
       <p>Change color of this block only?</p>
-      <div className='d-flex flex-wrap justify-content-center'>
+      <div className='d-flex flex-wrap justify-content-center gap-2'>
         <ColorPicker
-          color={justClicked}
+          color={color}
           onChange={handleChange}
-          onBlur={() => dispatch(closeModal())}
+          // onBlur={() => dispatch(closeModal())}
         />
+        <button onClick={() => dispatch(closeModal())} className='btn btn-primary'>Done</button>
       </div>
     </>
   );

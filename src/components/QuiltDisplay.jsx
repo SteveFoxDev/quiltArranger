@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { PiSwapLight } from 'react-icons/pi';
 import { openModal } from '../store/slices/quiltSlice';
 import { setJustClicked, deSelectBlock } from '../store/slices/quiltSlice';
 
@@ -9,13 +10,14 @@ const QuiltDisplay = ({ quilt, className }) => {
   const handleClick = (row, block, color, num) => {
     const clicked = { row, block, color, num };
 
-    if (quilt[row][block].opacity === 0.33) {
+    if (quilt[row][block].selected === true) {
       return dispatch(deSelectBlock(clicked));
     } else {
       dispatch(setJustClicked(clicked));
       return dispatch(openModal());
     }
   };
+
 
   const renderedQuilt = quilt.map((row, index) => {
     return (
@@ -24,14 +26,17 @@ const QuiltDisplay = ({ quilt, className }) => {
           return (
             <div
               key={`${index}${i}`}
-              className='col border ratio ratio-1x1 d-inline-flex align-items-center justify-content-center p-0 quilt-block'
+              className='col border ratio ratio-1x1 d-inline-flex align-items-center justify-content-center p-0 cursor-pointer'
               style={{
-                backgroundColor: { bgColor } && `${tile.hex}`,
-                opacity: `${tile.opacity}`,
+                backgroundColor:  bgColor ? `${tile.hex}${tile.selected ? 75 : ''}` : 'rgb(255, 255, 255)'
               }}
               onClick={() => handleClick(index, i, tile.hex, tile.num)}
             >
-              {tile.num}
+              {tile.selected ? (
+                <PiSwapLight className='icon-green' />
+              ) : (
+                tile.num
+              )}
             </div>
           );
         })}

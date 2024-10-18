@@ -51,13 +51,13 @@ const quiltSlice = createSlice({
     },
     selectBlock(state) {
       const { row, block } = state.justClicked;
-      state.quilt[row][block].opacity = 0.33;
+      state.quilt[row][block].selected = true;
       state.showModal = false;
       state.toBeSwapped = { row, block };
     },
     deSelectBlock(state, action) {
       const { row, block } = action.payload;
-      state.quilt[row][block].opacity = 1;
+      state.quilt[row][block].selected = false;
       state.toBeSwapped = null;
     },
     setJustClicked(state, action) {
@@ -68,13 +68,16 @@ const quiltSlice = createSlice({
       const { row, block } = state.justClicked;
       const { row: row2, block: block2 } = state.toBeSwapped;
       const temp = state.quilt[row2][block2];
-      temp.opacity = 1;
+      temp.selected = false;
       state.quilt[row2][block2] = state.quilt[row][block];
       state.quilt[row][block] = temp;
       state.toBeSwapped = null;
       state.justClicked = {};
       state.showModal = false;
     },
+    setBgColor(state, action) {
+      state.bgColor = action.payload;
+    }
   },
 });
 
@@ -88,5 +91,6 @@ export const {
   deSelectBlock,
   setJustClicked,
   swapBlocks,
+  setBgColor
 } = quiltSlice.actions;
 export const quiltReducer = quiltSlice.reducer;

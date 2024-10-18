@@ -4,6 +4,7 @@ import QuiltCreateForm from '../components/QuiltCreateForm';
 import QuiltEditor from '../components/QuiltEditor';
 import Modal from '../components/Modal';
 import QuiltModalBody from '../components/QuiltModalBody';
+import QuiltOptions from '../components/QuiltOptions';
 
 const QuiltPage = () => {
   const quilt = useSelector((state) => state.quilt.quilt);
@@ -13,6 +14,7 @@ const QuiltPage = () => {
     <div className='container'>
       <QuiltCreateForm />
       <QuiltEditor />
+      <QuiltOptions />
       {showModal && <Modal ><QuiltModalBody /></Modal>}
       <QuiltDisplay quilt={quilt || []} />
     </div>

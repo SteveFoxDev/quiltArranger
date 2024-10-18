@@ -6,6 +6,14 @@
     width: 5rem;
 }
 
-.quilt-block {
+.cursor-pointer {
     cursor: pointer;
+}
+
+.icon-green {
+    color: rgb(102, 255, 0);
+}
+
+.check-switch {
+    transform: scale(1.4);
 }
