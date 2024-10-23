@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { useSelector, useDispatch } from 'react-redux';
+import { Tooltip } from 'react-tooltip';
 import { PiSwapLight } from 'react-icons/pi';
 import { openModal } from '../store/slices/quiltSlice';
 import { setJustClicked, deSelectBlock } from '../store/slices/quiltSlice';
@@ -11,13 +12,8 @@ const QuiltDisplay = ({ quilt, className }) => {
   const { bgColor } = useSelector((state) => state.quilt);
   const dispatch = useDispatch();
 
-  // const componentRef = useRef();
-  // const handlePrint = useReactToPrint({
-  //   content: () => componentRef.current,
-  // });
-
   const contentRef = useRef(null);
-  const reactToPrintFn = useReactToPrint({contentRef});
+  const reactToPrintFn = useReactToPrint({ contentRef });
 
   const handleClick = (row, block, color, num) => {
     const clicked = { row, block, color, num };
@@ -61,10 +57,19 @@ const QuiltDisplay = ({ quilt, className }) => {
 
   return (
     <div>
+      <Tooltip id='quilt-tooltip' defaultIsOpen={true} className='tooltip' />
       <QuiltOptions handlePrint={reactToPrintFn} />
-      <PrintableQuilt ref={contentRef} className={className || ''}>
-        {renderedQuilt}
-      </PrintableQuilt>
+      <div className='shadow'>
+        <PrintableQuilt ref={contentRef} className={className || ''}>
+          <a
+            data-tooltip-id='quilt-tooltip'
+            data-tooltip-content='Click quilt block to swap or change color.'
+            data-tooltip-variant='info'
+          >
+            {renderedQuilt}
+          </a>
+        </PrintableQuilt>
+      </div>
     </div>
   );
 };

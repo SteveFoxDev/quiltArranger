@@ -2,6 +2,10 @@ body {
     background-color: #DDDDDD;
 }
 
+.tooltip {
+    z-index: 100;
+}
+
 .navbar {
     background-color: #508C9B;
 }
@@ -35,6 +39,10 @@ body {
 
 .color-picker {
     width: 5rem;
+}
+
+input[type=color]:hover {
+    transform: scale(1.1);
 }
 
 .cursor-pointer {
