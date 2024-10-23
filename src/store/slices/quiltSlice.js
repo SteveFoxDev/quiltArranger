@@ -77,7 +77,7 @@ const quiltSlice = createSlice({
     },
     setBgColor(state, action) {
       state.bgColor = action.payload;
-    }
+    },
   },
 });
 
@@ -91,6 +91,6 @@ export const {
   deSelectBlock,
   setJustClicked,
   swapBlocks,
-  setBgColor
+  setBgColor,
 } = quiltSlice.actions;
 export const quiltReducer = quiltSlice.reducer;

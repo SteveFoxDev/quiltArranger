@@ -4,13 +4,13 @@ import { TfiLayoutGrid3Alt } from 'react-icons/tfi';
 const NumberInput = ({ name, errors, register, className, ...props }) => {
   let renderedIcon;
   if (name === 'columns') {
-    renderedIcon = <TfiLayoutColumn3Alt className='fs-2 text-secondary' />;
+    renderedIcon = <TfiLayoutColumn3Alt className='fs-2 input-icon' />;
   } else if (name === 'rows') {
     renderedIcon = (
-      <TfiLayoutColumn3Alt className='fs-2 text-secondary rotate' />
+      <TfiLayoutColumn3Alt className='fs-2 input-icon rotate' />
     );
   } else if (name === 'fabrics') {
-    renderedIcon = <TfiLayoutGrid3Alt className='fs-2 text-secondary' />;
+    renderedIcon = <TfiLayoutGrid3Alt className='fs-2 input-icon' />;
   }
 
   const validationOptions = {

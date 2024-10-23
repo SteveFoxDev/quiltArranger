@@ -16,9 +16,14 @@ const QuiltEditor = () => {
 
   const renderedText = 'Change colors for each number group.';
   const renderedContent = (
-    <div className='container d-flex flex-wrap justify-content-start gap-1 bg-dark border border-secondary rounded-bottom'>
+    <div className='container d-flex flex-wrap justify-content-start gap-1 accordion-content rounded-bottom'>
       {colors.map((color) => (
-        <ColorPicker className='my-1' key={color.num} color={color} onChange={handleChange} />
+        <ColorPicker
+          className='my-1'
+          key={color.num}
+          color={color}
+          onChange={handleChange}
+        />
       ))}
     </div>
   );

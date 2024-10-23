@@ -17,7 +17,7 @@ const Accordion = ({ text, content }) => {
   return (
     <div>
       <div
-        className='container border border-secondary text-white rounded-top bg-dark d-flex justify-content-between cursor-pointer align-items-center'
+        className='container text-white rounded-top accordion d-flex justify-content-between cursor-pointer align-items-center'
         onClick={handleClick}
       >
         <p className='mb-0'>{text}</p>

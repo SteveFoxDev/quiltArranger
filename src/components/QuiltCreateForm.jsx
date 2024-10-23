@@ -46,7 +46,7 @@ const QuiltCreateForm = ({ className }) => {
 
       <button
         onClick={handleSubmit(onSubmit)}
-        className='btn btn-lg btn-primary w-100'
+        className='btn btn-lg btn-custom w-100'
       >
         Create Quilt
       </button>
